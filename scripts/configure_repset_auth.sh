@@ -30,3 +30,7 @@ echo "Creating user: 'main_admin'"
 kubectl exec mongod-0 -c mongod-container -- mongo --eval 'db.getSiblingDB("admin").createUser({user:"main_admin",pwd:"'"${1}"'",roles:[{role:"root",db:"admin"}]});'
 echo
 
+echo "Creating user: 'catalog_user'"
+kubectl exec mongod-0 -c mongod-container -- mongo --eval 'db.getSiblingDB("catalog").createUser({user:"catalog_user",pwd:"'"${2}"'",roles:[{role:"collStats",db:"catalog"},{role:"convertToCapped",db:"catalog"},{role:"createCollection",db:"catalog"},{role:"dbHash",db:"catalog"},{role:"dbStats",db:"catalog"},{role:"dropCollection",db:"catalog"},{role:"createIndex",db:"catalog"},{role:"dropIndex",db:"catalog"},{role:"find",db:"catalog"},{role:"insert",db:"catalog"},{role:"killCursors",db:"catalog"},{role:"listIndexes",db:"catalog"},{role:"listCollections",db:"catalog"},{role:"remove",db:"catalog"},{role:"renameCollectionSameDB",db:"catalog"},{role:"update",db:"catalog"}});'
+echo
+
