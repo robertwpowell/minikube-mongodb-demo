@@ -79,6 +79,12 @@ Exit out of the shell and exit out of the first container (“mongod-0”). Then
     
 You should see that the two records inserted via the first replica, are visible to the second replica.
 
+If you see this error 
+    `"errmsg" : "not master and slaveOk=false",
+	"code" : 13435,
+	"codeName" : "NotMasterNoSlaveOk",`
+then you need to set 
+    `rs.slaveOk();`
 #### 1.3.2 Redeployment Without Data Loss Test
 
 To see if Persistent Volume Claims really are working, run a script to drop the Service & StatefulSet (thus stopping the pods and their “mongod” containers) and then a script to re-create them again:
